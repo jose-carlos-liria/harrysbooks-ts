@@ -1,0 +1,20 @@
+{
+  "name": "harrybooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run compile && mocha ./test/index.spec.js",
+    "compile": "tsc ./src/index.ts ./test/index.spec.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^6.2.0"
+  },
+  "dependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2"
+  }
+}
