@@ -1,2 +1,2 @@
 # harrysbooks-ts
-Typescript development of Harry's books tas
+Typescript development of Harry's books task
