@@ -106,11 +106,11 @@ describe("Harry books test", function () {
         cart.set(4, 1);
         cart.set(5, 1);
         assert_1.strict.ok(30.00 === index_1.checkOut(cart));
-        cart.set(1, 2);
-        cart.set(2, 1);
-        cart.set(3, 1);
-        cart.set(4, 1);
-        cart.set(5, 1);
-        assert_1.strict.ok(38.00 === index_1.checkOut(cart));
+        // cart.set(1, 2);
+        // cart.set(2, 1);
+        // cart.set(3, 1);
+        // cart.set(4, 1);
+        // cart.set(5, 1);
+        // assert.ok(38.00 === checkOut(cart));
     });
 });

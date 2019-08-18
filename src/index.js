@@ -80,9 +80,9 @@ exports.initArray = function (cart) {
 /**
  * Returns true if aux can be belongs to a possible finale solution, otherwise returns false
  *
- * @param { array } basket
- * @param { array } si
- * @param { array } aux
+ * @param { array } basket  Array with the books bought by the customer
+ * @param { array } si      Array with the initial final solution
+ * @param { array } sol     Array with a possible solution. If si and sol can be added then returns true
  */
 exports.solution = function (basket, si, sol) {
     var ps = sol.slice();
@@ -99,18 +99,29 @@ exports.solution = function (basket, si, sol) {
     }
     return true;
 };
+/**
+ * Returns true is a valid final solution, otherwise returns false
+ *
+ * @param basket Array with the books bought by the customer
+ * @param si Array with a initial solution
+ */
 exports.validSolution = function (basket, si) {
     var aux = basket.slice();
     for (var i = 0; i < si.length; i++) {
         var sol = si[i];
         for (var j = 0; j < aux.length; j++) {
-            //aux[j] = parseInt(aux[j] - sol[j]);
             aux[j] = aux[j] - sol[j];
         }
     }
     var distinctZero = aux.filter(function (item) { return item > 0; });
     return distinctZero.length == 0 ? true : false;
 };
+/**
+ * Returns the best price for the purchase of the customer
+ *
+ * @param cart Basket with all the books bought by the customer. If the customer has no bought some copy of a determinated book in the cart this
+ * will be appear like {number_of_book, 0}
+ */
 exports.checkOut = function (cart) {
     var _a = exports.initArray(cart), basket = _a[0], dp = _a[1];
     var voa = Number.POSITIVE_INFINITY;
@@ -146,11 +157,5 @@ exports.checkOut = function (cart) {
             i = level;
         }
     }
-    //console.log(voa);
-    // //console.log(soa);
-    // console.log(soa[8][0][1]);
-    // for (var i = 0; i < soa.length; i++){
-    //     console.log(soa[i])
-    // }
     return voa;
 };

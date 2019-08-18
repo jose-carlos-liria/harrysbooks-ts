@@ -84,9 +84,9 @@ export const initArray = (cart) => {
 /**
  * Returns true if aux can be belongs to a possible finale solution, otherwise returns false
  * 
- * @param { array } basket 
- * @param { array } si 
- * @param { array } aux 
+ * @param { array } basket  Array with the books bought by the customer
+ * @param { array } si      Array with the initial final solution
+ * @param { array } sol     Array with a possible solution. If si and sol can be added then returns true
  */
 export const solution = (basket:number[], si:number[][], sol:number[]) => {
     var ps = [...sol];
@@ -104,12 +104,17 @@ export const solution = (basket:number[], si:number[][], sol:number[]) => {
     return true;
 }
 
+/**
+ * Returns true is a valid final solution, otherwise returns false
+ * 
+ * @param basket Array with the books bought by the customer
+ * @param si Array with a initial solution
+ */
 export const validSolution = (basket:number[], si:number[][]) => {
     var aux = [...basket];
     for (var i:number = 0; i < si.length; i++){
         var sol:number[] = si[i];
         for (var j = 0; j < aux.length; j++){
-            //aux[j] = parseInt(aux[j] - sol[j]);
             aux[j] = aux[j] - sol[j];
         }
     }
@@ -117,6 +122,12 @@ export const validSolution = (basket:number[], si:number[][]) => {
     return distinctZero.length == 0 ? true : false;
 }
 
+/**
+ * Returns the best price for the purchase of the customer
+ * 
+ * @param cart Basket with all the books bought by the customer. If the customer has no bought some copy of a determinated book in the cart this
+ * will be appear like {number_of_book, 0} 
+ */
 export const checkOut = (cart:Map<number, number>) => {
     const [basket, dp] = initArray(cart);
     var voa:number = Number.POSITIVE_INFINITY;
@@ -150,12 +161,5 @@ export const checkOut = (cart:Map<number, number>) => {
             i = level;            
         }
     }
-    //console.log(voa);
-    // //console.log(soa);
-    // console.log(soa[8][0][1]);
-    // for (var i = 0; i < soa.length; i++){
-    //     console.log(soa[i])
-    // }
-
     return voa;
 }
